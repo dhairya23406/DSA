@@ -12,31 +12,23 @@
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        if (root == nullptr){
-            return 0;
-        }
+       stack<pair<TreeNode*,int>> st;
+        st.push({root,1});
+        int res=0;
 
-        int level =0;
-        queue<TreeNode*> q;
-        q.push(root);
+        while(!st.empty()){
+            pair<TreeNode*, int> top =st.top();
+            st.pop();
 
-        while(!q.empty()){
-            int size=q.size();
+            TreeNode* node = top.first;
+            int depth= top.second;
 
-            for(int i=0;i<size;i++){
-                TreeNode* node = q.front();
-                q.pop();
-
-                if(node->left != nullptr){
-                    q.push(node-> left);
-                }
-                if(node->right != nullptr){
-                    q.push(node->right);
-                }
-                }
-                level++;
+            if(node != nullptr){
+                res = max(res,depth);
+                st.push({node->left, depth+1});
+                st.push({node->right, depth+1});
             }
-
-            return level;
+        }
+        return res;
     }
 };
