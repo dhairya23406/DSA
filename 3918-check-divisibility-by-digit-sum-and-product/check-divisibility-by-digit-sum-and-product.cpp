@@ -11,9 +11,7 @@ public:
             sd += rem;
             pd *= rem;
         }
-        if (n % (sd + pd) == 0) {
-            return true;
-        }
-        return false;
+        return n % (sd + pd) == 0;
+         
     }
 };
