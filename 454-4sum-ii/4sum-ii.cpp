@@ -14,9 +14,9 @@ public:
                 int sum=c+d;
             
 
-        if(mp.find(-sum)!=mp.end()){
-            ans+=mp[-sum];
-        }
+        if (mp.count(-sum)) {
+    ans += mp[-sum];
+}
             }
         }
         return ans;
