@@ -1,25 +1,24 @@
 class Solution {
 public:
     bool isValid(string s) {
-        stack<char> st;
+       stack<char> st;
 
-        unordered_map<char,char> closetoopen = {
-            {']','['},
-            {')','('},
-            {'}','{'}
-        };
+       unordered_map<char, char> mp = {
+        {'}','{'},
+        {')','('},
+        {']','['}
+       };
 
-
-        for(char c:s){
-            if(closetoopen.count(c)){
-                if(!st.empty() && st.top() == closetoopen[c]){
-                    st.pop();
-                }else return false;
-            }
-            else st.push(c);
-            
+       for(char c:s){
+        if(mp.count(c)){
+            if(!st.empty() && st.top()==mp[c]){
+                st.pop();
+            } else return false;
+        } else{
+        st.push(c);
         }
         
-        return st.empty();
+       }
+       return st.empty();
     }
 };
